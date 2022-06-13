@@ -23,7 +23,6 @@ services:
         - traefik.enable=false
 
     command:
-      - --log.level=DEBUG
       - --api=true
       - --api.insecure=true
       - --providers.docker
