@@ -13,4 +13,4 @@ services:
 
 networks: 
   dataisbased:
-    driver: bridge
+    external: true
