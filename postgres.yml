@@ -12,5 +12,5 @@ services:
       - /var/lib/postgresql/data/:/var/lib/postgresql/data/
 
 networks: 
-  dataisbased:
+  databased:
     external: true
