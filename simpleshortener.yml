@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  simpleshortener:
+    image: ghcr.io/KeyValueSystems/SimpleShortener
+    restart: always
+    networks:
+      - proxy
+    deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.http.middlewares.simpleshortener-https-redirect.redirectscheme.scheme: https
+        traefik.http.routers.simpleshortener-http.middlewares: simpleshortener-https-redirect
+        traefik.http.routers.simpleshortener-http.entrypoints: http
+        traefik.http.routers.simpleshortener-http.rule: Host(`valk.sh`) || Host(`www.valk.sh`) || Host(`vky.one`) || Host(`www.vky.one`)
+        traefik.http.routers.simpleshortener.entrypoints: https
+        traefik.http.routers.simpleshortener.rule: Host(`valk.sh`) || Host(`www.valk.sh`) || Host(`vky.one`) || Host(`www.vky.one`)
+        traefik.http.routers.simpleshortener.tls.certresolver: letsencrypt
+        traefik.http.services.simpleshortener.loadbalancer.server.port: 8080
+    environment:
+      DATABASE_URL: "${DATABASE_URL}"
+
+networks:
+  proxy:
+    external: true
+  database:
+    external: true
