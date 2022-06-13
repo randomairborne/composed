@@ -1,0 +1,16 @@
+
+version: '3'
+
+services:
+  postgres:
+    image: 'postgres:latest'
+    ports:
+      - 5432:5432
+    networks:
+      - dataisbased
+    volumes:
+      - /var/lib/postgresql/data/:/var/lib/postgresql/data/
+
+networks: 
+  dataisbased:
+    driver: bridge
