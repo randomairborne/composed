@@ -7,7 +7,7 @@ services:
     ports:
       - 5432:5432
     networks:
-      - dataisbased
+      - databased
     volumes:
       - /var/lib/postgresql/data/:/var/lib/postgresql/data/
 
