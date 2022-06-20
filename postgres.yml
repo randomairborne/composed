@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  database:
+    image: 'postgres:latest'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: psqldb
+    mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+    volumes:
+      - /var/lib/postgresql/data/:/var/lib/postgresql/data/
