@@ -38,6 +38,8 @@ services:
       - --entrypoints.https=true
       - --entrypoints.https.address=:443
       - --entrypoints.https.http.tls
+      - --entrypoints.minecraft=true
+      - --entrypoints.minecraft.address=:25565
       - --certificatesresolvers.letsencrypt
       - --certificatesresolvers.letsencrypt.acme.httpchallenge
       - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=http
